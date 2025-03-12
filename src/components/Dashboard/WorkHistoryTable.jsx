@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import workingHistoryData from "../globaldata/workingHistoryData";
-import { EfficientChart } from ".";
+import workingHistoryData from "../../globaldata/workingHistoryData";
+import { EfficientChart } from "..";
 import { FaSort } from "react-icons/fa";
 
 function WorkHistoryTable() {

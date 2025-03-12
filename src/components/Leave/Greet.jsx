@@ -1,7 +1,7 @@
 import React from 'react'
 import { PiClockCountdown } from "react-icons/pi";
 import globalData from '@/globaldata/globalData';
-import { CurrentDate } from '.';
+import { CurrentDate } from '..';    
 
 function Greet() {
     const date = new Date()

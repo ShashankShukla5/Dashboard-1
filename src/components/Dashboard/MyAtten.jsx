@@ -1,7 +1,7 @@
 import React from "react";
 import globalData from "@/globaldata/globalData";
 import { IoMdCheckboxOutline } from "react-icons/io";
-import { MyAttenChart } from ".";
+import { MyAttenChart } from "..";
 
 function MyAtten() {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { TodayAtten, TimeAtten, MyAtten } from "./index";
+import { TodayAtten, TimeAtten, MyAtten } from "../index";
 
 function Attendence() {
   return (

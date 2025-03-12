@@ -1,5 +1,5 @@
 import React from "react";
-import { MyTeamTable } from ".";
+import { MyTeamTable } from "..";
 
 function MyTeam() {
   return (

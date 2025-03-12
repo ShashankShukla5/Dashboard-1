@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import teamData from "../globaldata/teamData";
+import teamData from "../../globaldata/teamData";
 import { FaSort } from "react-icons/fa";
 
 function MyTeamTable() {

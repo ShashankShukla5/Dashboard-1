@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { CiSearch } from "react-icons/ci";
 import { MdKeyboardCommandKey } from "react-icons/md";
@@ -14,6 +15,8 @@ import { RxCross2 } from "react-icons/rx";
 function NavBar() {
   const [toggle, setToggle] = useState(false);
   const searchRef = useRef(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -41,10 +44,10 @@ function NavBar() {
         alt="Logo"
       />
       <div className="hidden sm:flex items-center w-fit h-14 sm:gap-0 md:gap-7">
-        <Button className="bg-white shadow-none text-black h-11 sm:px-2 md:px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]">
+        <Button onClick={()=>navigate("/")} className="bg-white shadow-none text-black h-11 sm:px-2 md:px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]">
           Dashboard
         </Button>
-        <Button className="bg-white shadow-none text-black h-11 px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]">
+        <Button onClick={()=>navigate("/leave")} className="bg-white shadow-none text-black h-11 px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]">
           Leave
         </Button>
         <Button className="bg-white shadow-none text-black h-11 px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]">
@@ -109,8 +112,8 @@ function NavBar() {
             />
           </div>
           <div className="w-full mb-4 flex flex-col items-end gap-3 mt-4">
-            <div className="text-[#111f31] hover:cursor-pointer">Dashboard</div>
-            <div className="text-[#111f31] hover:cursor-pointer">Leave</div>
+            <div onClick={()=>navigate("/")} className="text-[#111f31] hover:cursor-pointer">Dashboard</div>
+            <div onClick={()=>navigate("/leave")} className="text-[#111f31] hover:cursor-pointer">Leave</div>
             <div className="text-[#111f31] hover:cursor-pointer">
               Attendance
             </div>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import TodayAttenChart from './TodayAttenChart';
 import { RiFingerprint2Line } from "react-icons/ri";
-import { Button } from './index';
+import { Button } from '../index';
 import globalData from '@/globaldata/globalData';
-import { CountdownTimer } from './index';
+import { CountdownTimer } from '../index';
 
 
 function TodayAtten() {

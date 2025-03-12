@@ -1,5 +1,5 @@
 import React from "react";
-import { MyTeam, WorkingHistory } from ".";
+import { MyTeam, WorkingHistory } from "..";
 
 function AttendanceData() {
   return (

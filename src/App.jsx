@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import './App.css'
 import {NavBar, NavBarV, Content} from './components/index'
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
@@ -8,7 +7,7 @@ function App() {
     <div>
       <NavBarV/>
       <NavBar/>
-      <Content/>
+      <Outlet/>
     </div>
     
   )
