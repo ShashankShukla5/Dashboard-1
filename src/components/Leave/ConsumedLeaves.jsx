@@ -1,7 +1,7 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
-import globalData from "@/globaldata/globalData";
+import leaveGlobalData from "@/globaldata/leaveGlobalData";
 import { LeaveBalance } from "..";
 
 Chart.register(ArcElement, Tooltip, Legend);
@@ -10,7 +10,7 @@ function ConsumedLeaves() {
   const data = {
     datasets: [
       {
-        data: [globalData.totalLeaves, 36 - globalData.totalLeaves],
+        data: [leaveGlobalData.totalLeaves, 36 - leaveGlobalData.totalLeaves],
         backgroundColor: ["#3077ed", "#e8eff9"],
         borderWidth: 0,
         cutout: "78%",
@@ -66,7 +66,7 @@ function ConsumedLeaves() {
           <div className="relative w-20 h-20">
             <Doughnut data={data} options={options} />
             <div className="flex flex-col absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-              <div className="text-xs font-bold ">{globalData.totalLeaves}</div>
+              <div className="text-xs font-bold ">{leaveGlobalData.totalLeaves}</div>
               <div className="text-xs text-[#afb1b3]">/36</div>
             </div>
           </div>
