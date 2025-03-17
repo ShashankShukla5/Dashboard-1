@@ -6,9 +6,9 @@ import { RxCrossCircled } from "react-icons/rx";
 
 function MyLeavesTable() {
   return (
-    <div className="w-full overflow-y-auto no-scrollbar h-[25rem]">
+    <div className="w-full overflow-auto no-scrollbar h-[25rem]">
       {MyLeavesData.map((data, i) => (
-        <div key={i} className="flex gap-2 w-full mb-1">
+        <div key={i} className="flex gap-2 min-w-full w-70 mb-1">
           <div className="flex w-[80%] gap-2">
             <div className="flex flex-col items-center">
               <div className="mb-1 mt-1">
@@ -49,4 +49,3 @@ function MyLeavesTable() {
 
 export default MyLeavesTable;
 
-// bg-[#e6e6e6]

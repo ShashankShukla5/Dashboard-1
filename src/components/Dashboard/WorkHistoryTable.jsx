@@ -4,6 +4,8 @@ import { EfficientChart } from "..";
 import { FaSort } from "react-icons/fa";
 
 function WorkHistoryTable() {
+  const [workData, setWorkData] = useState(workingHistoryData);
+  const [toggleDate, setToggleDate] = useState("ascending")
   let effiTime = "";
 
   function calculateTimeDifference(startTime, endTime) {
@@ -21,39 +23,104 @@ function WorkHistoryTable() {
     return `${diffHours}:${diffMinutes}`;
   }
 
+  function calculateTotalMinutes(startTime, endTime){
+    const start = new Date(`2025-01-01 ${startTime}`);
+    const end =
+      endTime === "-Still in office-"
+        ? new Date(`2025-01-01 7:00 PM`)
+        : new Date(`2025-01-01 ${endTime}`);
+
+     const diffMs = end - start;
+     return diffMs
+  }
+
+  function sortByDate() {
+    const sortedData = [...workData].sort((a, b) => 
+      toggleDate === "ascending" ? Number(a.date) - Number(b.date) : Number(b.date) - Number(a.date)
+    );
+  
+    setWorkData(sortedData);
+    setToggleDate(toggleDate === "ascending" ? "descending" : "ascending");
+  }
+
+  function sortByArrival() {
+    const sortedData = [...workData].sort((a, b) => {
+      const timeA = new Date(`2025-01-01 ${a.arrival}`).getTime();
+      const timeB = new Date(`2025-01-01 ${b.arrival}`).getTime();
+      return toggleDate === "ascending" ? timeA - timeB : timeB - timeA;
+    });
+  
+    setWorkData(sortedData);
+    setToggleDate(toggleDate === "ascending" ? "descending" : "ascending");
+  }
+
+  function sortByDeparture() {
+    const sortedData = [...workData].sort((a, b) => {
+      const timeA =
+        a.departure === "-Still in office-"
+          ? new Date("2025-01-01 7:00 PM").getTime() 
+          : new Date(`2025-01-01 ${a.departure}`).getTime();
+  
+      const timeB =
+        b.departure === "-Still in office-"
+          ? new Date("2025-01-01 7:00 PM").getTime()
+          : new Date(`2025-01-01 ${b.departure}`).getTime();
+  
+      return toggleDate === "ascending" ? timeA - timeB : timeB - timeA;
+    });
+  
+    setWorkData(sortedData);
+    setToggleDate(toggleDate === "ascending" ? "descending" : "ascending");
+  }
+
+  function sortByEffectiveTime() {
+    const sortedData = [...workData].sort((a, b) => {
+      const minutesA = calculateTotalMinutes(a.arrival, a.departure);
+      const minutesB = calculateTotalMinutes(b.arrival, b.departure);
+      
+      return toggleDate === "ascending" ? minutesA - minutesB : minutesB - minutesA;
+    });
+  
+    setWorkData(sortedData);
+    setToggleDate(toggleDate === "ascending" ? "descending" : "ascending");
+  }
+  
   return (
     <div className="overflow-auto no-scrollbar w-full h-[25rem]">
-      <ul>
+      <ul className="w-120 sm:w-full">
         <li>
           <div className="flex items-center min-w-full xs:w-120 bg-[#f8f8f8] h-12 rounded-2xl px-3 pr-0">
             <div className="flex justify-between items-center w-1/4 ">
               <p className="text-[#717579] font-bold text-[12px] sm:text-[0.75rem]">
                 Date
               </p>
-              <FaSort className="mr-5 text-[#d3d4d9]" />
+              <FaSort
+                onClick={sortByDate}
+                className="mr-5 text-[#d3d4d9] hover:cursor-pointer"
+              />
             </div>
             <div className="flex justify-between items-center w-1/4">
               <p className="text-[#717579] font-bold text-[12px] sm:text-[0.75rem]">
                 Arrival
               </p>
-              <FaSort className="mr-5 text-[#d3d4d9]" />
+              <FaSort onClick={sortByArrival} className="mr-5 text-[#d3d4d9] hover:cursor-pointer" />
             </div>
             <div className="flex justify-between items-center w-1/4">
               <p className="text-[#717579] font-bold text-[12px] sm:text-[0.75rem]">
                 Departure
               </p>
-              <FaSort className="mr-5 text-[#d3d4d9]" />
+              <FaSort onClick={sortByDeparture} className="mr-5 text-[#d3d4d9] hover:cursor-pointer" />
             </div>
             <div className="flex justify-between items-center w-1/4">
               <p className="text-[#717579] font-bold text-[12px] sm:text-[0.75rem]">
                 Effective Time
               </p>
-              <FaSort className="mr-5 text-[#d3d4d9]" />
+              <FaSort onClick={sortByEffectiveTime} className="mr-5 text-[#d3d4d9] hover:cursor-pointer" />
             </div>
           </div>
         </li>
-        <div className="xs:w-120 sm:w-full">
-          {workingHistoryData.map((data, index) => (
+        <div className="mt-3 flex flex-col overflow-y-auto no-scrollbar gap-7 h-[20rem]">
+          {workData.map((data, index) => (
             <li key={index}>
               <div className="flex w-full items-center border-b px-3 py-5">
                 <div className="flex w-1/4 gap-3 items-center sm:justify-start">

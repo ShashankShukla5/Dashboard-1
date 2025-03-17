@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { CiSearch } from "react-icons/ci";
@@ -22,7 +22,7 @@ function NavBar() {
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.key === "f") {
         event.preventDefault();
-        searchRef.current?.focus(); 
+        searchRef.current?.focus();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -30,7 +30,7 @@ function NavBar() {
     [];
   });
 
-  function toggleMenu() { 
+  function toggleMenu() {
     setToggle(!toggle);
   }
 
@@ -44,12 +44,20 @@ function NavBar() {
         alt="Logo"
       />
       <div className="hidden sm:flex items-center w-fit h-14 sm:gap-0 md:gap-7">
-        <Button onClick={()=>navigate("/")} className="bg-white shadow-none text-black h-11 sm:px-2 md:px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]">
-          Dashboard
-        </Button>
-        <Button onClick={()=>navigate("/leave")} className="bg-white shadow-none text-black h-11 px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]">
-          Leave
-        </Button>
+        <NavLink to="/">
+          {({isActive}) => (
+            <Button className={` ${isActive ? "bg-[#0065b2] text-white":"bg-white text-black"} shadow-none  h-11 sm:px-2 md:px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]`}>
+              Dashboard
+            </Button>
+          )}
+        </NavLink>
+        <NavLink to="/leave">
+        {({isActive}) => (
+            <Button className={` ${isActive ? "bg-[#0065b2] text-white":"bg-white text-black"} shadow-none  h-11 sm:px-2 md:px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]`}>
+              Leave
+            </Button>
+          )}
+        </NavLink>
         <Button className="bg-white shadow-none text-black h-11 px-5 cursor-pointer hover:bg-[#f5f9fc] hover:text-[#5f7fb6]">
           Attendence
         </Button>
@@ -112,8 +120,18 @@ function NavBar() {
             />
           </div>
           <div className="w-full mb-4 flex flex-col items-end gap-3 mt-4">
-            <div onClick={()=>navigate("/")} className="text-[#111f31] hover:cursor-pointer">Dashboard</div>
-            <div onClick={()=>navigate("/leave")} className="text-[#111f31] hover:cursor-pointer">Leave</div>
+            <div
+              onClick={() => navigate("/")}
+              className="text-[#111f31] hover:cursor-pointer"
+            >
+              Dashboard
+            </div>
+            <div
+              onClick={() => navigate("/leave")}
+              className="text-[#111f31] hover:cursor-pointer"
+            >
+              Leave
+            </div>
             <div className="text-[#111f31] hover:cursor-pointer">
               Attendance
             </div>

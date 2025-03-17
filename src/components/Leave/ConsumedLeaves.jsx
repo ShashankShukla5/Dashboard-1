@@ -28,7 +28,7 @@ function ConsumedLeaves() {
 
   return (
     <div className="flex gap-10  w-full flex-col sm:w-full lg:w-1/3 bg-white rounded-xl px-5 pb-5 border ">
-      <div className="flex w-full">
+      <div className="flex flex-col xs:flex-row gap-2 xs:gap-base w-full">
         <div className="flex flex-col gap-3 w-[70%]">
           <div className="w-full mt-5">Consumed Leave types</div>
           <div className="mt-3 flex w-full">
