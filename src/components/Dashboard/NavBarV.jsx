@@ -12,7 +12,10 @@ function NavBarV() {
   return (
     <div className="hidden sm:block sm:h-full sm:overflow-y-auto no-scrollbar fixed flex flex-col absolute h-full w-18  border-r items-center gap-14 z-10">
       <div className="flex flex-col items-center">
-        <img className="mt-1.5 max-w-[70%] h-auto" src="src/assets/logo.png" alt="Logo" />
+        <div className="flex flex-col justify-center items-center">
+        <img className="mt-1.5 max-w-[70%] h-auto" src="https://images.fineartamerica.com/images/artworkimages/medium/3/1-lexcorp-marwata-prayogo-permadi-transparent.png" alt="Logo" />
+        <p className="text-[0.625rem] text-[#66b43e]">LexCorp</p>
+        </div>
         <div className="flex flex-col items-center hover:cursor-pointer px-3 py-3 rounded-md hover:bg-[#d8e9f7] hover:text-[#5f7fb6]">
           <PiSpeedometerThin className="text-2xl text-[#707377] hover:text-[#5f7fb6]" />
           <p className="text-[0.625rem] text-[#707377] hover:text-[#5f7fb6]">
